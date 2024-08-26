@@ -42,7 +42,7 @@ def scan_ip_range(start_ip, end_ip, community):
         if asyncio.run(check_ilo(ip, community)):
             print(f"HPE iLO device found at IP: {ip}")
             ilo_ips.append(ip)
-    
+    print(ilo_ips)
     return ilo_ips
 
 # Function to fetch iLO details via API
