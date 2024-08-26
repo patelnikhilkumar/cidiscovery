@@ -18,11 +18,12 @@ def index():
         ilo_ips = scan_ip_range(start_ip, end_ip, community)
 
         # Fetch and store details for each discovered iLO device
-        # for ilo_ip in ilo_ips:
-        #     xml_data = fetch_ilo_details(ilo_ip, community)
-        #     insert_ilo_data(ilo_ip, xml_data)
+        for ilo_ip in ilo_ips:
+            xml_data = fetch_ilo_details(ilo_ip, community)
+            print(xml_data)
+            insert_ilo_data(ilo_ip, xml_data)
 
-        # return redirect(url_for('results'))
+        return redirect(url_for('results'))
 
     return render_template('index.html')
 
