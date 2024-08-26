@@ -9,7 +9,7 @@ sys.path.insert(1, '/usr/local/lib/python3/dist-packages')
 async def check_ilo(ip, community, oid="1.3.6.1.4.1.232"):
     errorIndication, errorStatus, errorIndex, varBinds = await getCmd(
         SnmpDispatcher(),
-        CommunityData('public'),
+        CommunityData(community),
         UdpTransportTarget((ip, 161)),
         ObjectType(ObjectIdentity(oid))
     )
@@ -39,7 +39,7 @@ def scan_ip_range(start_ip, end_ip, community):
     for ip_int in range(int(start_ip), int(end_ip) + 1):
         ip = str(ipaddress.IPv4Address(ip_int))
         print(f"Scanning {ip}...")
-        if asyncio.check_ilo(ip, community):
+        if asyncio.run(check_ilo(ip, community)):
             print(f"HPE iLO device found at IP: {ip}")
             ilo_ips.append(ip)
     
