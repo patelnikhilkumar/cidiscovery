@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discovered iLO Devices</title>
+</head>
+<body>
+    <h1>Discovered HPE iLO Devices</h1>
+    <table border="1">
+        <tr>
+            <th>IP Address</th>
+            <th>Server Name</th>
+            <th>Product Name</th>
+            <th>Serial Number</th>
+            <th>Firmware Version</th>
+        </tr>
+        {% for ilo in ilo_data %}
+        <tr>
+            <td>{{ ilo[0] }}</td>
+            <td>{{ ilo[1] }}</td>
+            <td>{{ ilo[2] }}</td>
+            <td>{{ ilo[3] }}</td>
+            <td>{{ ilo[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Discover More</a>
+</body>
+</html>
