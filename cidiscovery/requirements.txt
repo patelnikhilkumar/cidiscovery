@@ -1,0 +1,6 @@
+Flask==3.0.1
+requests
+sqlalchemy
+Flask-Cors
+Flask-SQLAlchemy
+Jinja2

@@ -1,0 +1,375 @@
+---
+apiVersion: v2
+discovery:
+  - classicApp:
+      - app: VMWare
+        config:
+          {
+            "credential":
+              {
+                "credentialType": "VMWARE",
+                "description": "VMWare Device Credentials",
+                "name": "VMWare Credentials",
+                "timeoutMs": 15000,
+                "secure": true,
+                "port": 443,
+                "userName": "administrator@opsramp.lab",
+                "password": "Ops!ramp12345",
+              },
+            "integration":
+              {
+                "displayName": "172.25.0.16",
+                "ipAddress": "172.25.0.16",
+                "credentialSet": "VMWare Credentials",
+                "discoveryProfiles": [
+                    {
+                    "name": "VMWare 172.25.0.16 Profile",
+                    "scanNow": true,
+                    "schedule": {
+                        "patternType": "HOURLY",
+                        "pattern": "1",
+                        "startTime": "1:00:00"
+                    },
+                    "policy": {
+                        "actions": [
+                            {
+                              "action": "MANAGE DEVICE"
+                            }
+                        ],
+                        "entityType": "any",
+                        "matchType": "ANY",
+                        "rules": [
+                          {
+                            "resourceType": []
+                          },
+                        ],
+                      },
+                    }
+                 ],
+              },
+          }
+      - app: SNMP
+        config:
+          {
+            "credential":
+              {
+                "credentialType": "SNMP",
+                "name": "SNMP Credentials",
+                "description": "SNMP Device Credentials",
+                "transportType": "HTTP",
+                "timeoutMs": 15000,
+                "spSecure": false,
+                "port": 161,
+                "snmpVersion": "V2",
+                "community": "public",
+              },
+            "discoveryProfile":
+              {
+                "name": "TEST-SNMP-16-18-19",
+                "schedule": {
+                "patternType": "HOURLY",
+                "pattern": "1",
+                "startTime": "1:00:00"
+                },
+                "config": {
+                "deviceType": "SNMP Network Device",
+                "networkDepth": "1",
+                "discoveryType": "Iprange",
+                "credentials": [
+                  "dfvTjvaZEkuxavqEmeZuxVz6"
+                ],
+                "ipRange": "172.26.1.16, 172.26.1.18, 172.26.1.19",
+                "snmpEnabledDevice": true,
+                "cdp": true,
+                "ospf": true,
+                "bgp": true,
+                "bridge": true,
+                "loadBalancer": false,
+                "revDnsLookUp": false,
+                "discoverVoipPhones": false,
+                "advOpt": false,
+                "tcpPort": "443",
+                "nmapResult": true,
+                "policy": {
+                  "action": "MANAGE DEVICE"
+                }
+                },
+                  "scheduleNone": false
+                }
+              }
+  - sdkApp:
+      - app: vmware-nsx-t
+        version: 10.0.0
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test-vmware",
+                  "password": "Pass@1234",
+                  "name": "test-nsx-t",
+                  "description": "test",
+                },
+                "name": "vmware_nsx_t_config1",
+                "schedule":
+                  {
+                    "patternType": "MINUTES",
+                    "pattern": "20",
+                    "startTime": "00:20:00",
+                  },
+                "config": {
+                  "port": "9092",
+                  "isSecure": false,
+                  "apiTimeOuts": false,
+                  "alertSeverity": "[\"CRITICAL\",\"HIGH\",\"MEDIUM\",\"LOW\"]",
+                  "socketTimeout": 10,
+                  "connectionTimeout": 60,
+                  "alertClearedStatus": "[\"ACKNOWLEDGED\",\"SUPPRESSED\",\"RESOLVED\"]",
+                  "alertConfiguration": false,
+                  "notificationAlerts": false,
+                  "alertOnRootResource": true,
+                  "alertSeverityMapping": "{\"CRITICAL\":\"Critical\",\"HIGH\":\"Warning\",\"MEDIUM\":\"Warning\",\"LOW\":\"Info\"}",
+                  "connectionRequestTimeout": 10,
+                  "ipAddress": "172.25.252.63",
+                  "credential": "test-nsx-t",
+                },
+                "allResources": true,
+              }
+      - app: hpe-3par
+        version: 4.0.1
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test",
+                  "password": "Pass@1234",
+                  "name": "hpe-3par",
+                  "description": "test",
+                },
+                "name": "HPE 3PAR",
+                "schedule": {
+                  "patternType": "HOURLY",
+                  "pattern": "1",
+                  "startTime": "1:00:00"
+                },
+                "config": {
+                  "category": "[\"1\",\"2\"]",
+                  "isSecure": false,
+                  "alertSeverity": "[\"FATAL\",\"CRITICAL\",\"MAJOR\",\"MINOR\"]",
+                  "notificationAlert": true,
+                  "alertConfiguration": false,
+                  "alertSeverityMapping": "{\"FATAL\":\"Critical\",\"CRITICAL\":\"Critical\",\"MAJOR\":\"Warning\",\"MINOR\":\"Warning\",\"DEGRADED\":\"Warning\",\"INFORMATIONAL\":\"Info\",\"DEBUG\":\"Info\",\"UNKNOWN\":\"Info\"}",
+                  "IP Address": "172.25.252.63",
+                  "Port": "9097",
+                  "sshPort": "443",
+                  "Credential": "hpe-3par"
+                },
+                "allResources": true
+              }
+      - app: hpe-alletra
+        version: 4.0.0
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test",
+                  "password": "Pass@1234",
+                  "name": "hpe-alletra",
+                  "description": "test",
+                },
+                "name": "HPE Alletra MP/9000 Series",
+                "schedule": {
+                  "patternType": "HOURLY",
+                  "pattern": "1",
+                  "startTime": "1:00:00"
+                },
+                  "config": {
+                    "Port": "443",
+                    "persona": "Alletra MP",
+                    "sshPort": "22",
+                    "isSecure": true,
+                    "apiTimeOuts": false,
+                    "socketTimeout": 10,
+                    "alertSeverities": "[\"SEVERITY_FATAL\",\"SEVERITY_CRITICAL\",\"SEVERITY_MAJOR\",\"SEVERITY_MINOR\"]",
+                    "alertSeverityMap": "{\"SEVERITY_FATAL\":\"Critical\",\"SEVERITY_CRITICAL\":\"Critical\",\"SEVERITY_MAJOR\":\"Critical\",\"SEVERITY_MINOR\":\"Warning\",\"SEVERITY_DEGRADED\":\"Warning\",\"SEVERITY_INFO\":\"Info\",\"SEVERITY_DEBUG\":\"Info\",\"SEVERITY_UNKNOWN\":\"Info\"}",
+                    "connectionTimeout": 60,
+                    "notificationAlert": true,
+                    "alertConfiguration": false,
+                    "alertResolveStatus": "[\"STATUS_ACKNOWLEDGED\",\"STATUS_FIXED\",\"STATUS_AUTOFIXED\"]",
+                    "connectionRequestTimeout": 10,
+                    "IP Address": "172.25.252.25",
+                    "Credential": "hpe-alletra"
+                  },
+                  "persona": "Alletra MP",
+                  "nativeTypes": {},
+                  "allResources": true,
+                  "scheduleNone": true
+                }   
+      - app: redfish-server
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test",
+                  "password": "Pass@1234",
+                  "name": "redfish-server",
+                  "description": "test",
+                },
+                "name": "Redfish-Server",
+                "schedule": {
+                  "patternType": "HOURLY",
+                  "pattern": "1",
+                  "startTime": "1:00:00"
+                },
+                "config": {
+                  "port": "443",
+                  "isSecure": true,
+                  "alertSeverity": "[\"Critical\", \"OK\", \"Informational\", \"Warning\"]",
+                  "notificationAlert": true,
+                  "alertConfiguration": false,
+                  "alertOnRootResource": false,
+                  "alertSeverityMapping": "{\"Critical\": \"Critical\", \"Warning\": \"Warning\", \"Informational\": \"Info\", \"OK\": \"Ok\"}",
+                  "ipAddress": "172.26.111.222",
+                  "credential": "redfish-server"
+                },
+                "nativeTypes": {},
+                "allResources": true,
+                "scheduleNone": true
+              }
+      - app: hpe-oneview
+        version: 4.0.1
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test",
+                  "password": "Pass@1234",
+                  "name": "hpe-oneview",
+                  "description": "test",
+                },
+                "name": "HPE-Oneview",
+                "schedule": {
+                  "patternType": "HOURLY",
+                  "pattern": "1",
+                  "startTime": "1:00:00"
+                },
+                "config": {
+                  "Port": "443",
+                  "isSecure": true,
+                  "apiTimeOuts": false,
+                  "alertSeverity": "[\"Critical\",\"Disabled\",\"OK\",\"Unknown\",\"Warning\"]",
+                  "socketTimeout": 10,
+                  "connectionTimeout": 60,
+                  "notificationAlert": true,
+                  "alertConfiguration": false,
+                  "alertSeverityMapping": "{\"Critical\":\"Critical\",\"Disabled\":\"Critical\",\"OK\":\"Ok\",\"Unknown\":\"Warning\",\"Warning\":\"Warning\"}",
+                  "connectionRequestTimeout": 10,
+                  "ipAddress": "172.25.252.150",
+                  "credential": "hpe-oneview"
+                },
+                "nativeTypes": {},
+                "allResources": true,
+                "scheduleNone": true
+              }
+      - app: hpe-primera
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test",
+                  "password": "Pass@1234",
+                  "name": "hpe-primera",
+                  "description": "test",
+                },
+                "name": "HPE-Primera",
+                "schedule": {
+                  "patternType": "HOURLY",
+                  "pattern": "1",
+                  "startTime": "1:00:00"
+                },
+                "config": {
+                  "Port": "443",
+                  "sshPort": "22",
+                  "category": "[\"1\",\"2\"]",
+                  "isSecure": true,
+                  "apiTimeOuts": false,
+                  "alertSeverity": "[\"FATAL\",\"CRITICAL\",\"MAJOR\",\"MINOR\"]",
+                  "socketTimeout": 10,
+                  "connectionTimeout": 60,
+                  "notificationAlert": true,
+                  "alertConfiguration": false,
+                  "alertSeverityMapping": "{\"FATAL\":\"Critical\",\"CRITICAL\":\"Critical\",\"MAJOR\":\"Warning\",\"MINOR\":\"Warning\",\"DEGRADED\":\"Warning\",\"INFORMATIONAL\":\"Info\",\"DEBUG\":\"Info\",\"UNKNOWN\":\"Info\"}",
+                  "connectionRequestTimeout": 10,
+                  "IP Address": "172.25.252.25",
+                  "Credential": "hpe-primera"
+                },
+                "nativeTypes": {},
+                "allResources": true,
+                "scheduleNone": true
+              }
+      - app: hpe-msa
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test",
+                  "password": "Pass@1234",
+                  "name": "hpe-msa",
+                  "description": "test",
+                },
+                "name": "HPE-Msa",
+                "schedule": {
+                  "patternType": "HOURLY",
+                  "pattern": "1",
+                  "startTime": "1:00:00"
+                },
+                "config": {
+                  "Port": "443",
+                  "persona": "API",
+                  "sshPort": "22",
+                  "isSecure": true,
+                  "smisPort": "5988",
+                  "notificationAlert": true,
+                  "ipAddress": "172.26.111.222",
+                  "apiCredentials": "hpe-msa"
+                },
+                "nativeTypes": {},
+                "allResources": true,
+                "scheduleNone": true
+              }
+      - app: hpe-simplivity
+        configs:
+          - config: {
+                "credential":
+                {
+                  "credentialType": "APPLICATION",
+                  "userName": "test",
+                  "password": "Pass@1234",
+                  "name": "hpe-simplivity",
+                  "description": "test",
+                },
+                "name": "HPE-Simplivity",
+                "schedule": {
+                  "patternType": "HOURLY",
+                  "pattern": "1",
+                  "startTime": "1:00:00"
+                },
+                "config": {
+                  "Port": "443",
+                  "isSecure": true,
+                  "notificationAlert": true,
+                  "IPAddress": "172.25.252.25",
+                  "credential": "hpe-simplivity"
+                },
+                "nativeTypes": {},
+                "allResources": true,
+                "scheduleNone": true
+              }
+
+

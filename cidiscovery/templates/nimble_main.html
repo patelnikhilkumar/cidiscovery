@@ -1,0 +1,32 @@
+{% include "storage.html" %}
+<div class="container" style="overflow-x: auto;">
+    <div class="storage-cards">
+        <div class="card">
+            <a href="/arrays">
+                <div class="card-inner">
+                        <h3>Array</h3>
+                        <span class="material-icons-outlined">inventory_2</span>
+                </div>
+                <h1>{{arr_count}}</h1>
+            </a>
+        </div>
+        <div class="card">
+            <a href="/pools">
+                <div class="card-inner">
+                        <h3>Pools</h3>
+                        <span class="material-icons-outlined">category</span>
+                </div>
+                <h1>{{pools_count}}</h1>
+            </a>
+        </div>
+
+        <div class="card">
+            <a href="/vols">
+                <div class="card-inner">
+                    <h3>Volume</h3>
+                    <span class="material-icons-outlined">storage</span>
+                </div>
+                <h1>{{vol_count}}</h1>
+            </a>
+        </div>
+    </div>

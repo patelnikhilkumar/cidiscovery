@@ -1,0 +1,28 @@
+{% include "virdetails.html" %}
+        <table>
+            <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>VCPUs</th>
+            <th>Memory</th>
+            <th>Disk</th>
+            <th>Last Scanned</th>
+            <th>Refresh</th>
+            </tr>
+            {% for vm in vmlist: %}
+                <tr>
+                    <td>{{ vm.name }}</td>
+                    <td>{{ vm.state }}</td>
+                    <td>{{ vm.vcpus }}</td>
+                    <td>{{ vm.memory }}</td>
+                    <td>{{ vm.disk }}</td>
+                    <td></td>
+                    <td>
+                        <form action="/scan-vm" method="post">
+                            <button class="button" type="submit" name="button">Refresh</button>
+                        </form> 
+                    </td>
+            </tr>
+            {% endfor %}
+        </table>
+{% include "footer.html" %}

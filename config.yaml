@@ -1,0 +1,53 @@
+---
+apiVersion: v2
+discovery:
+  - classicApp:
+      - app: SNMP
+        config:
+          {
+            "credential":
+              {
+                "credentialType": "SNMP",
+                "name": "SNMP Credentials",
+                "description": "SNMP Device Credentials",
+                "transportType": "HTTP",
+                "timeoutMs": 15000,
+                "spSecure": false,
+                "port": 161,
+                "snmpVersion": "V2",
+                "community": "public",
+              },
+            "discoveryProfile":
+              {
+                "name": "TEST-SNMP-16-18-19",
+                "schedule": {
+                "patternType": "HOURLY",
+                "pattern": "1",
+                "startTime": "1:00:00"
+                },
+                "config": {
+                "deviceType": "SNMP Network Device",
+                "networkDepth": "1",
+                "discoveryType": "Iprange",
+                "credentials": [
+                  "dfvTjvaZEkuxavqEmeZuxVz6"
+                ],
+                "ipRange": "172.26.1.16, 172.26.1.18, 172.26.1.19",
+                "snmpEnabledDevice": true,
+                "cdp": true,
+                "ospf": true,
+                "bgp": true,
+                "bridge": true,
+                "loadBalancer": false,
+                "revDnsLookUp": false,
+                "discoverVoipPhones": false,
+                "advOpt": false,
+                "tcpPort": "443",
+                "nmapResult": true,
+                "policy": {
+                  "action": "MANAGE DEVICE"
+                }
+                },
+                  "scheduleNone": false
+                }
+              }

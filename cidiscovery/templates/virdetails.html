@@ -1,0 +1,63 @@
+{% include "header.html" %}
+    <div class="container-header">
+        <h1>CMDB - Virtualization</h1>
+        <span>
+            <form action="/refresh" method="post">
+                <button class="button" type="submit">Refresh All</button>
+            </form>
+            <p>Last Scanned: {{ lastscan }}</p> 
+        </span>
+    </div>
+
+    
+    <div class="container" style="overflow-x: auto;">
+        <div class="vcenter-cards">
+            <div class="card">
+                <a href="/dc">
+                    <div class="card-inner">
+                            <h3>Data Center</h3>
+                            <span class="material-icons-outlined">inventory_2</span>
+                    </div>
+                    <h1>{{dc_count}}</h1>
+                </a>
+            </div>
+            <div class="card">
+                <a href="/clusters">
+                    <div class="card-inner">
+                            <h3>Clusters</h3>
+                            <span class="material-icons-outlined">category</span>
+                    </div>
+                    <h1>{{cl_count}}</h1>
+                </a>
+            </div>
+    
+            <div class="card">
+                <a href="/esxi">
+                    <div class="card-inner">
+                        <h3>ESXi Hosts</h3>
+                        <span class="material-icons-outlined">storage</span>
+                    </div>
+                    <h1>{{esx_count}}</h1>
+                </a>
+            </div>
+    
+            <div class="card">
+                <a href="/vms">
+                    <div class="card-inner">
+                        <h3>Total VMs</h3>
+                        <span class="material-icons-outlined">computer</span>
+                    </div>
+                    <h1>{{vm_count}}</h1>
+                </a>
+            </div>
+    
+            <div class="card">
+                <a href="/ds">
+                    <div class="card-inner">
+                        <h3>Data</h3>
+                        <span class="material-icons-outlined">table</span>
+                    </div>
+                    <h1>{{ds_count}}</h1>
+                </a>
+            </div>
+        </div>

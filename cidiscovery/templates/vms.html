@@ -1,0 +1,38 @@
+{% include "virdetails.html" %}
+        <table>
+            <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>VCPUs</th>
+            <th>Memory</th>
+            <th>Disk</th>
+            <th>Last Scanned</th>
+            <th>Refresh</th>
+            </tr>
+            {% for vm in vmlist: %}
+                <tr>
+                    <td>{{ vm.name }}</td>
+                    <td style="text-align: center; vertical-align: middle;">
+                        {% if 'POWERED_OFF' in vm.state %}
+                            <span class="dot-gray"></span>
+                        {% endif%}
+                        {% if 'POWERED_ON' in vm.state %}
+                            <p>&#128994;</p>
+                        {% endif%}
+                    </td>
+                    <td>{{ vm.vcpus }}</td>
+                    <td>{{ vm.memory }}</td>
+                    <td>{{ vm.disk }}</td>
+                    <td></td>
+                    <td>
+                        <form action="/scan-vm" method="post">
+                            <button class="button" type="submit" name="button">Refresh</button>
+                        </form> 
+                    </td>
+                    <!-- <td>
+                        <span class="dot"></span>
+                    </td> -->
+            </tr>
+            {% endfor %}
+        </table>
+{% include "footer.html" %}
