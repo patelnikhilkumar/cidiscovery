@@ -53,109 +53,109 @@ def get_all_ilo_data():
     conn.close()
     return rows
 
-{
-    'RIMP': 
-    {'HSI': 
-        {'SBSN': 'SGH632XWFC', 
-         'SPN': 'ProLiant DL380 Gen9', 
-         'UUID': '719061SGH632XWFC', 
-         'SP': '1', 
-         'cUUID': '30393137-3136-4753-4836-333258574643', 
-         'VIRTUAL': 
-            {
-                'STATE': 'Inactive', 
-                'VID':
-                    {
-                        'BSN': None, 
-                        'cUUID': None
-                    }
-            }, 
-            'PRODUCTID': '719061-B21', 
-            'NICS': {
-                'NIC': [
-                    {
-                        'PORT': '1', 
-                        'DESCRIPTION': 'iLO 4', 
-                        'LOCATION': 'Embedded', 
-                        'MACADDR': 'e0:07:1b:f8:88:36', 
-                        'IPADDR': '10.66.63.35', 
-                        'STATUS': 'OK'
-                    }, 
-                    {
-                        'PORT': '2', 
-                        'DESCRIPTION': 'iLO 4', 
-                        'LOCATION': 'Embedded', 
-                        'MACADDR': 'e0:07:1b:f8:88:37', 
-                        'IPADDR': 'Unknown', 
-                        'STATUS': 'Disabled'
-                    }, 
-                    {
-                        'PORT': '1', 
-                        'DESCRIPTION': 'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
-                        'LOCATION': 'Embedded', 
-                        'MACADDR': '1c:98:ec:15:7f:8c', 
-                        'IPADDR': None, 
-                        'STATUS': 'Unknown'
-                    }, 
-                    {
-                        'PORT': '2', 
-                        'DESCRIPTION': 'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
-                        'LOCATION': 'Embedded', 
-                        'MACADDR': '1c:98:ec:15:7f:8d', 
-                        'IPADDR': None, 
-                        'STATUS': 'Unknown'
-                    }, 
-                    {
-                        'PORT': '3', 
-                        'DESCRIPTION': 'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
-                        'LOCATION': 'Embedded', 
-                        'MACADDR': '1c:98:ec:15:7f:8e', 
-                        'IPADDR': None, 
-                        'STATUS': 'Unknown'
-                    }, 
-                    {
-                        'PORT': '4', 
-                        'DESCRIPTION': 
-                        'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
-                        'LOCATION': 'Embedded', 
-                        'MACADDR': '1c:98:ec:15:7f:8f', 
-                        'IPADDR': None, 
-                        'STATUS': 'Unknown'
-                    }
-                ]
-            }
-        }, 
-    'MP': {
-        'ST': '1', 
-        'PN': 'Integrated Lights-Out 4 (iLO 4)', 
-        'FWRI': '2.80', 
-        'BBLK': None, 
-        'HWRI': 'ASIC: 17', 
-        'SN': 'ILOSGH632XWFC', 
-        'UUID': 'ILO719061SGH632XWFC', 
-        'IPM': '1', 
-        'SSO': '1', 
-        'PWRM': '1.0.9', 
-        'ERS': '0', 
-        'EALERT': '1'
-        }, 
-    'SPATIAL': {
-        'DISCOVERY_RACK': 
-        'Not Supported', 
-        'DISCOVERY_DATA': 'Server does not detect Location Discovery Services', 
-        'TAG_VERSION': '0', 
-        'RACK_ID': '0', 
-        'RACK_ID_PN': '0', 
-        'RACK_DESCRIPTION': '0', 
-        'RACK_UHEIGHT': '0', 
-        'UPOSITION': '0', 
-        'ULOCATION': '0', 
-        'cUUID': '30393137-3136-4753-4836-333258574643', 
-        'UHEIGHT': '2.00', 
-        'UOFFSET': '0'
-        }, 
-    'HEALTH': {
-        'STATUS': '2'
-        }
-    }
-}
+# {
+#     'RIMP': 
+#     {'HSI': 
+#         {'SBSN': 'SGH632XWFC', 
+#          'SPN': 'ProLiant DL380 Gen9', 
+#          'UUID': '719061SGH632XWFC', 
+#          'SP': '1', 
+#          'cUUID': '30393137-3136-4753-4836-333258574643', 
+#          'VIRTUAL': 
+#             {
+#                 'STATE': 'Inactive', 
+#                 'VID':
+#                     {
+#                         'BSN': None, 
+#                         'cUUID': None
+#                     }
+#             }, 
+#             'PRODUCTID': '719061-B21', 
+#             'NICS': {
+#                 'NIC': [
+#                     {
+#                         'PORT': '1', 
+#                         'DESCRIPTION': 'iLO 4', 
+#                         'LOCATION': 'Embedded', 
+#                         'MACADDR': 'e0:07:1b:f8:88:36', 
+#                         'IPADDR': '10.66.63.35', 
+#                         'STATUS': 'OK'
+#                     }, 
+#                     {
+#                         'PORT': '2', 
+#                         'DESCRIPTION': 'iLO 4', 
+#                         'LOCATION': 'Embedded', 
+#                         'MACADDR': 'e0:07:1b:f8:88:37', 
+#                         'IPADDR': 'Unknown', 
+#                         'STATUS': 'Disabled'
+#                     }, 
+#                     {
+#                         'PORT': '1', 
+#                         'DESCRIPTION': 'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
+#                         'LOCATION': 'Embedded', 
+#                         'MACADDR': '1c:98:ec:15:7f:8c', 
+#                         'IPADDR': None, 
+#                         'STATUS': 'Unknown'
+#                     }, 
+#                     {
+#                         'PORT': '2', 
+#                         'DESCRIPTION': 'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
+#                         'LOCATION': 'Embedded', 
+#                         'MACADDR': '1c:98:ec:15:7f:8d', 
+#                         'IPADDR': None, 
+#                         'STATUS': 'Unknown'
+#                     }, 
+#                     {
+#                         'PORT': '3', 
+#                         'DESCRIPTION': 'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
+#                         'LOCATION': 'Embedded', 
+#                         'MACADDR': '1c:98:ec:15:7f:8e', 
+#                         'IPADDR': None, 
+#                         'STATUS': 'Unknown'
+#                     }, 
+#                     {
+#                         'PORT': '4', 
+#                         'DESCRIPTION': 
+#                         'HPE Ethernet 1Gb 4-port 331i Adapter - NIC', 
+#                         'LOCATION': 'Embedded', 
+#                         'MACADDR': '1c:98:ec:15:7f:8f', 
+#                         'IPADDR': None, 
+#                         'STATUS': 'Unknown'
+#                     }
+#                 ]
+#             }
+#         }, 
+#     'MP': {
+#         'ST': '1', 
+#         'PN': 'Integrated Lights-Out 4 (iLO 4)', 
+#         'FWRI': '2.80', 
+#         'BBLK': None, 
+#         'HWRI': 'ASIC: 17', 
+#         'SN': 'ILOSGH632XWFC', 
+#         'UUID': 'ILO719061SGH632XWFC', 
+#         'IPM': '1', 
+#         'SSO': '1', 
+#         'PWRM': '1.0.9', 
+#         'ERS': '0', 
+#         'EALERT': '1'
+#         }, 
+#     'SPATIAL': {
+#         'DISCOVERY_RACK': 
+#         'Not Supported', 
+#         'DISCOVERY_DATA': 'Server does not detect Location Discovery Services', 
+#         'TAG_VERSION': '0', 
+#         'RACK_ID': '0', 
+#         'RACK_ID_PN': '0', 
+#         'RACK_DESCRIPTION': '0', 
+#         'RACK_UHEIGHT': '0', 
+#         'UPOSITION': '0', 
+#         'ULOCATION': '0', 
+#         'cUUID': '30393137-3136-4753-4836-333258574643', 
+#         'UHEIGHT': '2.00', 
+#         'UOFFSET': '0'
+#         }, 
+#     'HEALTH': {
+#         'STATUS': '2'
+#         }
+#     }
+# }
