@@ -14,7 +14,7 @@ def init_db():
                        serial_number TEXT, 
                        firmware_version TEXT,
                        remote_support TEXT,
-                       health_status TEXT''')
+                       health_status TEXT)''')
     conn.commit()
     conn.close()
 
