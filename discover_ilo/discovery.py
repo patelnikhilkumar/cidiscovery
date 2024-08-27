@@ -23,9 +23,9 @@ def scan_ip_range(start_ip, end_ip, community):
             response.raise_for_status()  # Raise an exception for HTTP errors
             if "iLO" in response.text:
                 print("Found 'iLO' in the response.")
+                ilo_ips.append(ip)
             else:
                 print("Did not find 'iLO' in the response.")
-                ilo_ips.append(ip)
         except requests.exceptions.RequestException as err:
             print(f"Request Exception: {err}")
 
