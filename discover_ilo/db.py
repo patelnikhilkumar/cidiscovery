@@ -8,10 +8,13 @@ def init_db():
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS ilo_devices
                       (ip TEXT PRIMARY KEY, 
-                       server_name TEXT, 
+                       server_name TEXT,
+                       server_type TEXT,
                        product_name TEXT, 
                        serial_number TEXT, 
-                       firmware_version TEXT)''')
+                       firmware_version TEXT
+                       remote_support TEXT
+                       health_status TEXT''')
     conn.commit()
     conn.close()
 
@@ -21,15 +24,22 @@ def insert_ilo_data(ip, xml_data):
     cursor = conn.cursor()
     
     ilo_info = xml_data['RIMP']['MP']
-    server_name = ilo_info.get('SBSN', 'Unknown')
+    ilo_info2 = xml_data['RIMP']['HSI']
+    ilo_info3 = xml_data['RIMP']['HEALTH']
+
+    server_name = ilo_info2.get('SBSN', 'Unknown')
+    server_type = ilo_info2.get('SPN', 'Unknown')
     product_name = ilo_info.get('PN', 'Unknown')
-    serial_number = ilo_info.get('SPN', 'Unknown')
+    serial_number = ilo_info.get('SN', 'Unknown')
     firmware_version = ilo_info.get('FWRI', 'Unknown')
+    remote_support = ilo_info.get('ERS', 'Unknown')
+    health_status = ilo_info3.get('STATUS', 'Unknown')
+
 
     cursor.execute('''INSERT OR REPLACE INTO ilo_devices 
-                      (ip, server_name, product_name, serial_number, firmware_version) 
+                      (ip, server_name, server_type, product_name, serial_number, firmware_version, remote_support) 
                       VALUES (?, ?, ?, ?, ?)''',
-                   (ip, server_name, product_name, serial_number, firmware_version))
+                   (ip, server_name, server_type, product_name, serial_number, firmware_version, remote_support, health_status))
     
     conn.commit()
     conn.close()

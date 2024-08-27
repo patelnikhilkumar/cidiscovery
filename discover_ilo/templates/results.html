@@ -10,9 +10,12 @@
         <tr>
             <th>IP Address</th>
             <th>Server Name</th>
+            <th>Server Type</th>
             <th>Product Name</th>
             <th>Serial Number</th>
             <th>Firmware Version</th>
+            <th>Remote Support Enabled</th>
+            <th>Health Status</th>
         </tr>
         {% for ilo in ilo_data %}
         <tr>
@@ -21,6 +24,8 @@
             <td>{{ ilo[2] }}</td>
             <td>{{ ilo[3] }}</td>
             <td>{{ ilo[4] }}</td>
+            <td>{{ ilo[5] }}</td>
+            <td>{{ ilo[6] }}</td>
         </tr>
         {% endfor %}
     </table>

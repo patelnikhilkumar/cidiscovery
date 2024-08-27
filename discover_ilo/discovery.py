@@ -25,6 +25,7 @@ def scan_ip_range(start_ip, end_ip, community):
                 print("Found 'iLO' in the response.")
             else:
                 print("Did not find 'iLO' in the response.")
+                ilo_ips.append(ip)
         except requests.exceptions.RequestException as err:
             print(f"Request Exception: {err}")
 
@@ -32,8 +33,7 @@ def scan_ip_range(start_ip, end_ip, community):
         #     print(f"HPE iLO device found at IP: {ip}")
         #     ilo_ips.append(ip)
 
-        print(ilo_ips)
-
+    print(ilo_ips)
     return ilo_ips
 
 # Function to fetch iLO details via API
