@@ -38,7 +38,7 @@ def insert_ilo_data(ip, xml_data):
 
     cursor.execute('''INSERT OR REPLACE INTO ilo_devices 
                       (ip, server_name, server_type, product_name, serial_number, firmware_version, remote_support) 
-                      VALUES (?, ?, ?, ?, ?)''',
+                      VALUES (?, ?, ?, ?, ?, ?, ?. ?)''',
                    (ip, server_name, server_type, product_name, serial_number, firmware_version, remote_support, health_status))
     
     conn.commit()
