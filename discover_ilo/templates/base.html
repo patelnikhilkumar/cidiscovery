@@ -1,0 +1,57 @@
+{% include "header.html"  %}
+    <div class="container-header">
+        <h1>Discover And Register HPE Devices To HPE Enterprise Connected</h1>
+    </div>
+    <div class="container">
+        <main class="main-container">
+             <!-- card-1 starts -->
+             <div class="card-container">
+                <div class="card_image_container">
+                    <img src="static/images/HPE_data_satin_03_1600_0_72_RGB.jpg" alt="card1image" class="card_image" loading="lazy" />
+                    <h1 class="centered">Compute</h1>
+                 </div>
+                <div class="card_title_container">
+                    <p class="card_body">Discover & Register HPE Compute Devices to HPE Enterprise Connected Systems</p>
+                </div>
+                <div class="card_footer_container">
+                    <form action="/ilo"> <!--method="post"> -->
+                        <button class="button" type="submit" name="button">Start</button>
+                    </form> 
+                </div>   
+            </div>
+            <!-- card-1 ends -->
+            <!-- card-2 starts -->
+            <div class="card-container">
+                <div class="card_image_container">
+                    <img src="static/images/HPE_data_slice_05.png" alt="card1image" class="card_image" loading="lazy" />
+                    <h1 class="centered">Storage</h1>
+                 </div>
+                <div class="card_title_container">
+                    <p class="card_body">Discover & Register HPE Storage Devices to HPE Enterprise Connected Systems</p>
+                </div>
+                <div class="card_footer_container">
+                    <form action="/storage">
+                        <button class="button" type="submit" name="button">Start</button>
+                    </form> 
+                </div>   
+            </div>
+            <!-- card-2 ends -->
+            <!-- card-3 starts -->
+            <div class="card-container">
+                <div class="card_image_container">            
+                    <img src="static/images/HPE_tex_lib_dat_slice_v04_0001-4k_1600_0_72_RGB.jpg" alt="card1image" class="card_image" loading="lazy" />
+                    <h1 class="centered">Network</h1>
+                 </div>
+                <div class="card_title_container">
+                    <p class="card_body">Discover & Register HPE Network Devices to HPE Enterprise Connected Systems</p>
+                </div>
+                <div class="card_footer_container">
+                    <form action="/network">
+                        <button class="button" type="submit" name="button">Start</button>
+                    </form> 
+                </div>   
+            </div>
+            <!-- card-3 ends -->
+        </main>
+    </div>
+{% include "footer.html" %}

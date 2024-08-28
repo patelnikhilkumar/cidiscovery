@@ -1,12 +1,13 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Discovered iLO Devices</title>
 </head>
-<body>
+<body> -->
+{% include "header.html" %}
     <h1>Discovered HPE iLO Devices</h1>
-    <table border="1">
+    <table>
         <tr>
             <th>IP Address</th>
             <th>Server Name</th>
@@ -31,6 +32,11 @@
         {% endfor %}
     </table>
     <br>
-    <a href="{{ url_for('index') }}">Discover More</a>
-</body>
-</html>
+    <hr>
+    <div class="container-sub-header">
+        <h3><a href="{{ url_for('ilo') }}">Click To Discover More</a></h3>
+    </div>
+
+{% include "footer.html" %}
+<!-- </body>
+</html> -->

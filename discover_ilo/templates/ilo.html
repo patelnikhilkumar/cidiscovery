@@ -1,0 +1,44 @@
+{% include "header.html" %}
+<h1>Discover HPE iLO Devices</h1>
+    <!-- <form method="post">
+        <label for="start_ip">Start IP:</label>
+        <input type="text" id="start_ip" name="start_ip" required><br><br>
+        <label for="end_ip">End IP:</label>
+        <input type="text" id="end_ip" name="end_ip" required><br><br>
+        <label for="community">Community String:</label>
+        <input type="text" id="community" name="community" required><br><br>
+        <input type="submit" value="Discover">
+    </form> -->
+    <div class="container">
+        <form method="post">
+        <div class="row">
+          <div class="col-25">
+            <label for="start_ip">Start IP</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="start_ip" name="start_ip" placeholder="e.g 10.20.30.1" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="end_ip">End IP</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="end_ip" name="end_ip" placeholder="e.g 10.20.30.254" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="community">Community String</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="community" name="community" placeholder="e.g public" required>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <input type="submit" value="Discover">
+        </div>
+        </form>
+      </div>
+{% include "footer.html" %}
