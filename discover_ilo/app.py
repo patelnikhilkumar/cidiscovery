@@ -78,6 +78,7 @@ def register():
 
     response = requests.post(OV_URI, data=data, headers=headers)
     print(response)
+    return render_template('register.html',response=response)
 
 if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0')
