@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 from discovery import scan_ip_range, fetch_ilo_details
 from db import init_db, insert_ilo_data, get_all_ilo_data
+import requests
 
 app = Flask(__name__)
+OV_USERNAME="Administrator"
+OV_PASSWORD="Admin@123"
+
 
 # Initialize the database
 init_db()
@@ -57,6 +61,31 @@ def results():
     ilo_data = get_all_ilo_data()
     return render_template('results.html', ilo_data=ilo_data)
 
+@app.route('register', method=['GET'])
+def register():
+    OV_IP="10.56.73.2" 
+    OV_URI=f"https://{OV_IP}/rest/login-sessions"
+
+    headers = {
+        "X-Api-Version":"6800",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "password":"Admin@123",
+        "userName":"Administrator",
+        "loginMsgAck": "true"
+    }
+
+    response = requests.post(OV_URI, data=data, headers=headers)
+    print(response)
+
 if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0')
     app.run(debug=True)
+
+
+# Create Network and Network Sets
+# Network Sets:
+#     Inside that you will have multiple networks
+
+# Logical Interconnect Groups

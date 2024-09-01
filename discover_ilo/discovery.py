@@ -76,3 +76,21 @@ def fetch_ilo_details(ip, community):
     # )
 
     # return not error_indication and not error_status
+
+
+# Disover iLO >> Onboard on OV >> Enanle ERS 
+# SPT ST ??
+
+
+# [TechCare Customers]
+#     SFDC Cases
+
+# [OneView]
+#     HW Status Monitoring
+#     FW Management
+
+# [Consequence]
+#     Deletion of Data can happen
+#     Only adivisable for Blades Synergy etc
+
+# [OVRS]
