@@ -61,7 +61,7 @@ def results():
     ilo_data = get_all_ilo_data()
     return render_template('results.html', ilo_data=ilo_data)
 
-@app.route('register', method=['GET'])
+@app.route('/register')
 def register():
     OV_IP="10.56.73.2" 
     OV_URI=f"https://{OV_IP}/rest/login-sessions"
