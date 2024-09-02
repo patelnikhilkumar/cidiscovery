@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from discovery import scan_ip_range, fetch_ilo_details
 from db import init_db, insert_ilo_data, get_all_ilo_data
 import requests
+import json
 
 app = Flask(__name__)
 OV_USERNAME="Administrator"
@@ -77,9 +78,10 @@ def register():
         "loginMsgAck": "true"
     }
 
-    response = requests.post(OV_URI, data=data, headers=headers)
-    print(response)
-    return render_template('register.html',response=response)
+    response = requests.post(OV_URI, data=data, headers=headers , verify=False)
+    response.raise_for_status()
+    print(response.text)
+    return render_template('register.html',response=json.loads(response.text))
 
 if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0')
