@@ -67,10 +67,11 @@ def register():
     OV_URI=f"https://{OV_IP}/rest/login-sessions"
 
     headers = {
-        "X-Api-Version":"6800",
+        "X-Api-Version":"6000",
         "Content-Type": "application/json"
     }
     data = {
+        {"authLoginDomain":"Local",
         "password":"Admin@123",
         "userName":"Administrator",
         "loginMsgAck": "true"
@@ -90,3 +91,5 @@ if __name__ == '__main__':
 #     Inside that you will have multiple networks
 
 # Logical Interconnect Groups
+
+# curl -XPOST -k https://10.56.73.2/rest/login-sessions -H 'X-Api-Version: 6000' -H 'Content-Type: application/json' -d '{"userName":"Administrator",  "password":"Admin@123", "loginMsgAck": "true"}'
