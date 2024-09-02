@@ -71,7 +71,7 @@ def register():
         "Content-Type": "application/json"
     }
     data = {
-        {"authLoginDomain":"Local",
+        "authLoginDomain":"Local",
         "password":"Admin@123",
         "userName":"Administrator",
         "loginMsgAck": "true"
