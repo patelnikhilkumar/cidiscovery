@@ -215,7 +215,6 @@ def register():
 
 @app.route('/hpersdetails', methods=['GET','POST'])
 def hpersdetails():
-    rs_data = []
     ov_fqdn_ip="10.56.73.2"
     url = f"https://{ov_fqdn_ip}/rest/support/configuration"
 
@@ -242,7 +241,7 @@ def hpersdetails():
     except requests.exceptions.HTTPError as err:
         return jsonify({"error": str(err)}), response.status_code
 
-    rs_data.append(jsonify(response.text))
+    rs_data = json.loads(response.text)
     print(rs_data)
     return render_template('hpersdetails.html',rs_data=rs_data)
 
@@ -259,3 +258,9 @@ if __name__ == '__main__':
 #       "password":"Admin@123", 
 #       "loginMsgAck": "true"
 #     }'
+
+headers = {
+    "X-Api-Version": "6000",
+    "Content-Type": "application/json",
+    "Auth": "LTc4MjQ2MDM5MjQwp47y-UeXYVgnHJ1AVeLHLCX_ftcw4-Zq"
+}

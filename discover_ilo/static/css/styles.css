@@ -66,6 +66,10 @@ a {
   color: black;
 }
 
+.heading {
+  align-items: center;
+}
+
 .container {
   max-width: 95vw;
   padding: 2rem 2rem;
@@ -220,7 +224,8 @@ table {
 th {
 padding: 8px;
 text-align: left;
-border-bottom: 1px solid #ddd;
+border-top: 2px solid #27c57b;
+border-bottom: 2px solid #27c57b;
 }
 td {
 padding: 8px;

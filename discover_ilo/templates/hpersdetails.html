@@ -1,9 +1,8 @@
 {% include "header.html"  %}
-<div class="sub-header">
-    <div class="services">
-        <h2 align="centered">Remote Support Status Details</h2>
+    <div class="heading">
+        <h2>Remote Support Details</h2>
     </div>
-</div>
+    <br>
     <h3>Remote Support Configuration Status Details</h3>
     <table>
         <tr>
@@ -16,18 +15,16 @@
             <th>Email Notification</th>
             <th>Global Custom Delivery</th>
         </tr>
-        {% for ilo in rs_data %}
         <tr>
-            <td>{{ rs_data.type }}</td>
-            <td>{{ rs_data.category }}</td>
-            <td>{{ rs_data.companyName }}</td>
-            <td>{{ rs_data.marketingOptIn }}</td>
-            <td>{{ rs_data.autoEnableDevices }}</td>
-            <td>{{ rs_data.enableRemoteSupport }}</td>
-            <td>{{ rs_data.enableEmailNotification }}</td>
-            <td>{{ rs_data.globalCustomDeliveryId }}</td>
+            <td>{{ rs_data['type'] }}</td>
+            <td>{{ rs_data['category'] }}</td>
+            <td>{{ rs_data['companyName'] }}</td>
+            <td>{{ rs_data['marketingOptIn'] }}</td>
+            <td>{{ rs_data['autoEnableDevices'] }}</td>
+            <td>{{ rs_data['enableRemoteSupport'] }}</td>
+            <td>{{ rs_data['enableEmailNotification'] }}</td>
+            <td>{{ rs_data['globalCustomDeliveryId'] }}</td>
         </tr>
-        {% endfor %}
     </table>
 <br>
 <hr>
