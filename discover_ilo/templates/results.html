@@ -14,46 +14,48 @@
             <h3><a href="/register">Onboard iLOs To OneView</a></h3>
         </div>
     </div>
-    <table>
-        <tr>
-            <th>IP Address</th>
-            <th>Server Name</th>
-            <th>Server Type</th>
-            <th>Product Name</th>
-            <th>Serial Number</th>
-            <th>Firmware Version</th>
-            <th>Remote Support Enabled</th>
-            <th>Health Status</th>
-            <th>iLO UserName</th>
-            <th>iLO Password</th>
-        </tr>
-        {% for ilo in ilo_data %}
-        <tr>
-            <td>{{ ilo[0] }}</td>
-            <td>{{ ilo[1] }}</td>
-            <td>{{ ilo[2] }}</td>
-            <td>{{ ilo[3] }}</td>
-            <td>{{ ilo[4] }}</td>
-            <td>{{ ilo[5] }}</td>
-            <td>{{ ilo[6] }}</td>
-            <td>{{ ilo[7] }}</td>
-            <td>
-                <div class="row">
-                    <div class="col-50">
-                        <input type="text" id="ilousername" name="ilousername" placeholder="Administrator" required>    
+    <form action="/register" method="post">
+        <table>
+            <tr>
+                <th>IP Address</th>
+                <th>Server Name</th>
+                <th>Server Type</th>
+                <th>Product Name</th>
+                <th>Serial Number</th>
+                <th>Firmware Version</th>
+                <th>Remote Support Enabled</th>
+                <th>Health Status</th>
+                <th>iLO UserName</th>
+                <th>iLO Password</th>
+            </tr>
+            {% for ilo in ilo_data %}
+            <tr>
+                <td><input type="hidden" name="ip[]">{{ ilo[0] }}</td>
+                <td>{{ ilo[1] }}</td>
+                <td>{{ ilo[2] }}</td>
+                <td>{{ ilo[3] }}</td>
+                <td>{{ ilo[4] }}</td>
+                <td>{{ ilo[5] }}</td>
+                <td><input type="hidden" name="ers[]">{{ ilo[6] }}</td>
+                <td>{{ ilo[7] }}</td>
+                <td>
+                    <div class="row">
+                        <div class="col-50">
+                            <input type="text" id="ilousername[]" name="ilousername" placeholder="Administrator" required>    
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td>
-                <div class="row">
-                    <div class="col-50">
-                        <input type="password" id="ilopasswd" name="ilopasswd" required>    
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-50">
+                            <input type="password" id="ilopasswd[]" name="ilopasswd" required>    
+                        </div>
                     </div>
-                </div>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
     <br>
     <hr>
     <div class="container-sub-header">

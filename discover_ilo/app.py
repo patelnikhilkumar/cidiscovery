@@ -62,7 +62,7 @@ def results():
     ilo_data = get_all_ilo_data()
     return render_template('results.html', ilo_data=ilo_data)
 
-@app.route('/register')
+@app.route('/register', methods=['GET','POST'])
 def register():
     # Disable SSL warnings (insecure)
     requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
@@ -118,7 +118,23 @@ def register():
     if not session_id:
         return jsonify({"error": "Failed to retrieve session ID"}), 500
     
-    # Step-3: Add Server HW (Rack Mount Only) to OneView
+    # Step-3a: Fetch the details from the results page and construct a loop to run through all the iLOs
+    ips = request.form.getlist('ips[]')
+    ers = request.form.getlist('ers[]')
+    username = request.form.getlist('ilousername[]')
+    password = request.form.getlist('ilopasswd[]')
+
+     # Combine the data into a list of dictionaries
+    table_data = []
+    for i in range(len(ips)):
+        table_data.append({
+            'ip': ips[i],
+            'ers': ers[i],
+            'username': username[i],
+            'password': password[i]
+        })
+
+    # Step-3b: Add Server HW (Rack Mount Only) to OneView
     # add_ilo_url = f"https://{oneview_ip}/rest/login-sessions"
 
     # # Construct the payload
@@ -147,7 +163,7 @@ def register():
     # if response.status_code != 202:
     #     return jsonify({"error": "Failed to add iLO"}), 500
 
-    return jsonify({"sessionID": session_id})
+    return jsonify(table_data)
 
 if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0')
