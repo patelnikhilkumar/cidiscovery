@@ -165,22 +165,9 @@ def register():
 
     return jsonify(table_data)
 
-if __name__ == '__main__':
-    # app.run(debug=True, host='0.0.0.0')
-    app.run(debug=True)
-
-## FOR Reference: cURL for adding Server HardWare to OneView
-# curl -XPOST -k https://10.56.73.2/rest/login-sessions \
-# -H 'X-Api-Version: 6000' \
-# -H 'Content-Type: application/json' \
-# -d '{
-#       "userName":"Administrator",  
-#       "password":"Admin@123", 
-#       "loginMsgAck": "true"
-#     }'
 
 @app.route('/index1')
-def index():
+def index1():
     # Example data that might be dynamically loaded at runtime
     table_data = [
         {'id': 1, 'name': 'Item 1', 'value': 100, 'username': '', 'password': ''},
@@ -216,3 +203,17 @@ def process_table_data():
 
     # Return a simple response or render another template
     return f"Data received: {table_data}"
+
+if __name__ == '__main__':
+    # app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
+
+## FOR Reference: cURL for adding Server HardWare to OneView
+# curl -XPOST -k https://10.56.73.2/rest/login-sessions \
+# -H 'X-Api-Version: 6000' \
+# -H 'Content-Type: application/json' \
+# -d '{
+#       "userName":"Administrator",  
+#       "password":"Admin@123", 
+#       "loginMsgAck": "true"
+#     }'
