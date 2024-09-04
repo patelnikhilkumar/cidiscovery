@@ -119,7 +119,7 @@ def register():
         return jsonify({"error": "Failed to retrieve session ID"}), 500
     
     # Step-3a: Fetch the details from the results page and construct a loop to run through all the iLOs
-    ips = request.form.getlist('ips[]')
+    ips = request.form.getlist('ip[]')
     ers = request.form.getlist('ers[]')
     username = request.form.getlist('ilousername[]')
     password = request.form.getlist('ilopasswd[]')
