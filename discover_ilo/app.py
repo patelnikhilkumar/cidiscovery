@@ -80,7 +80,7 @@ def register():
         return jsonify({"error": str(err)}), response.status_code
 
     # Parse the response JSON to get the version
-    current_version = response.json().get(".currentVersion")
+    current_version = response.json().get("currentVersion")
 
     if not current_version:
         return jsonify({"error": "Failed to retrieve current version"}), 500
