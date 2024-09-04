@@ -67,7 +67,8 @@ a {
 }
 
 .heading {
-  align-items: center;
+  display: flex;
+  text-align: center;
 }
 
 .container {
