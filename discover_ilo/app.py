@@ -133,7 +133,7 @@ def register():
             'username': username[i],
             'password': password[i]
         })
-
+    print(table_data)
     # Step-3b: Add Server HW (Rack Mount Only) to OneView
     # add_ilo_url = f"https://{oneview_ip}/rest/login-sessions"
 
