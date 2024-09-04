@@ -53,6 +53,7 @@ def get_all_ilo_data():
     conn.close()
     return rows
 
+# Sample Output of the iLO XML
 # {
 #     'RIMP': 
 #     {'HSI': 

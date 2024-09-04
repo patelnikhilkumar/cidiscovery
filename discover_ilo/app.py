@@ -101,33 +101,7 @@ def register():
     return jsonify({"sessionID": session_id})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
-    #app.run(debug=True)
-
-
-# Create Network and Network Sets
-# Network Sets:
-#     Inside that you will have multiple networks
-
-# Logical Interconnect Groups
+    # app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
 
 # curl -XPOST -k https://10.56.73.2/rest/login-sessions -H 'X-Api-Version: 6000' -H 'Content-Type: application/json' -d '{"userName":"Administrator",  "password":"Admin@123", "loginMsgAck": "true"}'
-
-# OV_IP="10.56.73.2" 
-# OV_URI=f"https://{OV_IP}/rest/login-sessions"
-
-# headers = {
-#     "X-Api-Version":"6000",
-#     "Content-Type": "application/json"
-# }
-# data = {
-#     "authLoginDomain":"Local",
-#     "password":"Admin@123",
-#     "userName":"Administrator",
-#     "loginMsgAck": "true"
-# }
-
-# response = requests.post(OV_URI, data=data, headers=headers , verify=False)
-# response.raise_for_status()
-# print(response.text)
-# return render_template('register.html',response=json.loads(response.text))

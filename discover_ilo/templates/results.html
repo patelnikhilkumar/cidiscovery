@@ -17,6 +17,8 @@
             <th>Firmware Version</th>
             <th>Remote Support Enabled</th>
             <th>Health Status</th>
+            <th>iLO UserName</th>
+            <th>iLO Password</th>
         </tr>
         {% for ilo in ilo_data %}
         <tr>
@@ -28,6 +30,20 @@
             <td>{{ ilo[5] }}</td>
             <td>{{ ilo[6] }}</td>
             <td>{{ ilo[7] }}</td>
+            <td>
+                <div class="row">
+                    <div class="col-25">
+                        <input type="text" id="ilousername" name="ilousername" placeholder="Administrator" required>    
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="row">
+                    <div class="col-25">
+                        <input type="password" id="ilopasswd" name="ilopasswd" required>    
+                    </div>
+                </div>
+            </td>
         </tr>
         {% endfor %}
     </table>
