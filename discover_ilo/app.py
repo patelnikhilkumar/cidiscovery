@@ -121,8 +121,8 @@ def register():
     # Step-3a: Fetch the details from the results page and construct a loop to run through all the iLOs
     ips = request.form.getlist('ip[]')
     ers = request.form.getlist('ers[]')
-    username = request.form.getlist('ilousername[]')
-    password = request.form.getlist('ilopasswd[]')
+    usernames = request.form.getlist('ilousername[]')
+    passwords = request.form.getlist('ilopasswd[]')
 
      # Combine the data into a list of dictionaries
     table_data = []
@@ -130,8 +130,8 @@ def register():
         table_data.append({
             'ip': ips[i],
             'ers': ers[i],
-            'username': username[i],
-            'password': password[i]
+            'username': usernames[i],
+            'password': passwords[i]
         })
     print(table_data)
     # Step-3b: Add Server HW (Rack Mount Only) to OneView

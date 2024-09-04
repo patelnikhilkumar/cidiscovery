@@ -30,13 +30,13 @@
             </tr>
             {% for ilo in ilo_data %}
             <tr>
-                <td><input type="hidden" name="ip[]">{{ ilo[0] }}</td>
+                <td>{{ ilo[0] }}</td>
                 <td>{{ ilo[1] }}</td>
                 <td>{{ ilo[2] }}</td>
                 <td>{{ ilo[3] }}</td>
                 <td>{{ ilo[4] }}</td>
                 <td>{{ ilo[5] }}</td>
-                <td><input type="hidden" name="ers[]">{{ ilo[6] }}</td>
+                <td>{{ ilo[6] }}</td>
                 <td>{{ ilo[7] }}</td>
                 <td>
                     <div class="row">
@@ -52,6 +52,9 @@
                         </div>
                     </div>
                 </td>
+                <!-- Hidden input -->
+                 <input type="hidden" name="ip[]" value="{{ ilo[0] }}">
+                 <input type="hidden" name="ers[]" value="{{ ilo[6] }}">
             </tr>
             {% endfor %}
         </table>
