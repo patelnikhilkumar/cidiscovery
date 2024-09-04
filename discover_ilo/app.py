@@ -228,6 +228,7 @@ def hpersdetails():
     if not ov_session_id:
         return jsonify({"error": "Failed to retrieve session Id"}), 500
 
+    print(ov_api_version,ov_session_id)
     # Define headers
     headers = {
         "X-Api-Version": f"{ov_api_version}",
@@ -242,6 +243,7 @@ def hpersdetails():
         return jsonify({"error": str(err)}), response.status_code
 
     rs_data.append(jsonify(response.text))
+    print(rs_data)
     return render_template('hpersdetails.html',rs_data=rs_data)
 
 if __name__ == '__main__':

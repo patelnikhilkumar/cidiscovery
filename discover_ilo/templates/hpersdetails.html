@@ -1,8 +1,7 @@
 {% include "header.html"  %}
-
 <div class="sub-header">
     <div class="services">
-        <h2>Remote Support Status Details</h2>
+        <h2 align="centered">Remote Support Status Details</h2>
     </div>
 </div>
     <h3>Remote Support Configuration Status Details</h3>
@@ -27,23 +26,6 @@
             <td>{{ rs_data.enableRemoteSupport }}</td>
             <td>{{ rs_data.enableEmailNotification }}</td>
             <td>{{ rs_data.globalCustomDeliveryId }}</td>
-            <td>
-                <div class="row">
-                    <div class="col-50">
-                        <input type="text" name="ilousername[]" placeholder="Administrator">    
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="row">
-                    <div class="col-50">
-                        <input type="password" name="ilopasswd[]" required>    
-                    </div>
-                </div>
-            </td>
-            <!-- Hidden input -->
-             <input type="hidden" name="ip[]" value="{{ ilo[0] }}">
-             <input type="hidden" name="ers[]" value="{{ ilo[6] }}">
         </tr>
         {% endfor %}
     </table>
