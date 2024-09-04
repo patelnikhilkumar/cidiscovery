@@ -1,0 +1,67 @@
+{% include "header.html"  %}
+
+<div class="sub-header">
+    <div class="services">
+        <h2>Remote Support Status Details</h2>
+    </div>
+</div>
+    <h3>Remote Support Configuration Status Details</h3>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Company Name</th>
+            <th>Marketing Opt In</th>
+            <th>Serial Number</th>
+            <th>Remote Support Enabled</th>
+            <th>Email Notification</th>
+            <th>Global Custom Delivery</th>
+        </tr>
+        {% for ilo in rs_data %}
+        <tr>
+            <td>{{ rs_data.type }}</td>
+            <td>{{ rs_data.category }}</td>
+            <td>{{ rs_data.companyName }}</td>
+            <td>{{ rs_data.marketingOptIn }}</td>
+            <td>{{ rs_data.autoEnableDevices }}</td>
+            <td>{{ rs_data.enableRemoteSupport }}</td>
+            <td>{{ rs_data.enableEmailNotification }}</td>
+            <td>{{ rs_data.globalCustomDeliveryId }}</td>
+            <td>
+                <div class="row">
+                    <div class="col-50">
+                        <input type="text" name="ilousername[]" placeholder="Administrator">    
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="row">
+                    <div class="col-50">
+                        <input type="password" name="ilopasswd[]" required>    
+                    </div>
+                </div>
+            </td>
+            <!-- Hidden input -->
+             <input type="hidden" name="ip[]" value="{{ ilo[0] }}">
+             <input type="hidden" name="ers[]" value="{{ ilo[6] }}">
+        </tr>
+        {% endfor %}
+    </table>
+<br>
+<hr>
+<div class="container-sub-header">
+    <h3><a href="{{ url_for('ilo') }}">Click To Discover More</a></h3>
+</div>
+{% include "footer.html" %}
+
+<!-- {
+    "type":"Configuration",
+    "category":"support",    
+    "companyName":"",
+    "marketingOptIn":false,
+    "autoEnableDevices":true,
+    "enableRemoteSupport":false,
+    "enableEmailNotification":false,
+    "globalCustomDeliveryId":"",
+
+} -->

@@ -8,6 +8,57 @@ app = Flask(__name__)
 # Initialize the database
 init_db()
 
+def get_ov_api_version():
+    requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
+    oneview_ip="10.56.73.2"
+
+    version_url = f"https://{oneview_ip}/rest/version"
+    print(version_url)
+
+    try:
+        response = requests.get(version_url, verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        return jsonify({"error": str(err)}), response.status_code
+
+    # Parse the response JSON to get the version
+    ov_api_version = response.json().get("currentVersion")
+
+    print(ov_api_version)
+    return ov_api_version
+
+def get_ov_session_id(current_version):
+    oneview_ip="10.56.73.2"
+    # Construct the URL    
+    login_url = f"https://{oneview_ip}/rest/login-sessions"
+
+    # Construct the payload
+    payload = {
+        "authLoginDomain":"Local",
+        "password":"Admin@123",
+        "userName":"Administrator",
+        "loginMsgAck": "true"
+    }
+
+    # Define headers
+    headers = {
+        "X-Api-Version": f"{current_version}",
+        "Content-Type": "application/json"
+    }
+    # POST request to the OneView API
+    try:
+        response = requests.post(login_url, json=payload, headers=headers, verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        return jsonify({"error": str(err)}), response.status_code
+
+    # Parse the response JSON to get the session ID
+    ov_session_id = response.json().get("sessionID")
+    print(ov_session_id)
+    
+    return ov_session_id
+
+
 @app.route("/")
 def home():
     return render_template("base.html")
@@ -161,6 +212,36 @@ def register():
             return jsonify({"error": "Failed to add iLO"}), 500
 
     return jsonify(table_data)
+
+def hpersdetails():
+    rs_data = []
+    ov_fqdn_ip="10.56.73.2"
+    url = f"https://{ov_fqdn_ip}/rest/support/configuration"
+
+    ov_api_version = get_ov_api_version()
+
+    if not ov_api_version:
+        return jsonify({"error": "Failed to retrieve current version"}), 500
+    
+    ov_session_id = get_ov_session_id(ov_api_version)
+    if not ov_session_id:
+        return jsonify({"error": "Failed to retrieve session Id"}), 500
+
+    # Define headers
+    headers = {
+        "X-Api-Version": f"{ov_api_version}",
+        "Auth": f"{ov_session_id}",
+        "Content-Type": "application/json"
+    }
+    # POST request to the OneView API
+    try:
+        response = requests.get(url, headers=headers, verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        return jsonify({"error": str(err)}), response.status_code
+
+    rs_data.append(jsonify(response.text))
+    return render_template('hpersdetails.html',rs_data=rs_data)
 
 if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0')
