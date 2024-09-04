@@ -68,8 +68,28 @@ def register():
     requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
     
     oneview_ip="10.56.73.2"
-    # Construct the URL
-    url = f"https://{oneview_ip}/rest/login-sessions"
+
+    # Step-1: Fetch Current OneView Version 
+    version_url = f"https://{oneview_ip}/rest/version"
+    print(version_url)
+
+    try:
+        response = requests.get(version_url, verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        return jsonify({"error": str(err)}), response.status_code
+
+    # Parse the response JSON to get the version
+    current_version = response.json().get(".currentVersion")
+
+    if not current_version:
+        return jsonify({"error": "Failed to retrieve current version"}), 500
+
+    print(current_version)
+
+    # Step-2 Fetch OneView Login Session Id
+    # Construct the URL    
+    login_url = f"https://{oneview_ip}/rest/login-sessions"
 
     # Construct the payload
     payload = {
@@ -81,22 +101,51 @@ def register():
 
     # Define headers
     headers = {
-        "X-Api-Version": "6000",
+        "X-Api-Version": f"{current_version}",
         "Content-Type": "application/json"
     }
-
     # POST request to the OneView API
     try:
-        response = requests.post(url, json=payload, headers=headers, verify=False)
+        response = requests.post(login_url, json=payload, headers=headers, verify=False)
         response.raise_for_status()
     except requests.exceptions.HTTPError as err:
         return jsonify({"error": str(err)}), response.status_code
 
     # Parse the response JSON to get the session ID
     session_id = response.json().get("sessionID")
+    print(session_id)
 
     if not session_id:
         return jsonify({"error": "Failed to retrieve session ID"}), 500
+    
+    # Step-3: Add Server HW (Rack Mount Only) to OneView
+    # add_ilo_url = f"https://{oneview_ip}/rest/login-sessions"
+
+    # # Construct the payload
+    # payload = { 
+    #     "hostname" : "10.66.63.37", 
+    #     "username" : "Administrator", 
+    #     "password" : "Password", 
+    #     "force" : "true", 
+    #     "licensingIntent":"OneViewStandard",
+    #     "configurationState":"Monitored"
+    # }
+
+    # # Define headers
+    # headers = {
+    #     "X-Api-Version": f"{current_version}",
+    #     "Content-Type": "application/json",
+    #     "Auth": f"{session_id}"
+    # }
+    # # POST request to the OneView API
+    # try:
+    #     response = requests.post(add_ilo_url, json=payload, headers=headers, verify=False)
+    #     response.raise_for_status()
+    # except requests.exceptions.HTTPError as err:
+    #     return jsonify({"error": str(err)}), response.status_code
+
+    # if response.status_code != 202:
+    #     return jsonify({"error": "Failed to add iLO"}), 500
 
     return jsonify({"sessionID": session_id})
 
@@ -104,4 +153,12 @@ if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0')
     app.run(debug=True)
 
-# curl -XPOST -k https://10.56.73.2/rest/login-sessions -H 'X-Api-Version: 6000' -H 'Content-Type: application/json' -d '{"userName":"Administrator",  "password":"Admin@123", "loginMsgAck": "true"}'
+## FOR Reference: cURL for adding Server HardWare to OneView
+# curl -XPOST -k https://10.56.73.2/rest/login-sessions \
+# -H 'X-Api-Version: 6000' \
+# -H 'Content-Type: application/json' \
+# -d '{
+#       "userName":"Administrator",  
+#       "password":"Admin@123", 
+#       "loginMsgAck": "true"
+#     }'
