@@ -182,7 +182,7 @@ def index1():
 def process_table_data():
     ids = request.form.getlist('id[]')
     names = request.form.getlist('name[]')
-    values = request.form.getlist('value[]')
+    # values = request.form.getlist('value[]')
     usernames = request.form.getlist('username[]')
     passwords = request.form.getlist('password[]')
     
@@ -192,14 +192,14 @@ def process_table_data():
         table_data.append({
             'id': ids[i],
             'name': names[i],
-            'value': values[i],
+            # 'value': values[i],
             'username': usernames[i],
             'password': passwords[i]
         })
 
     # Example processing (printing table data to the console)
-    for row in table_data:
-        print(f"ID: {row['id']}, Name: {row['name']}, Value: {row['value']}, Username: {row['username']}, Password: {row['password']}")
+    # for row in table_data:
+    #     print(f"ID: {row['id']}, Name: {row['name']}, Value: {row['value']}, Username: {row['username']}, Password: {row['password']}")
 
     # Return a simple response or render another template
     return f"Data received: {table_data}"
