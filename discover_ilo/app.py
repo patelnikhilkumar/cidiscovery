@@ -213,6 +213,7 @@ def register():
 
     return jsonify(table_data)
 
+@app.route('/hpersdetails', methods=['GET','POST'])
 def hpersdetails():
     rs_data = []
     ov_fqdn_ip="10.56.73.2"
