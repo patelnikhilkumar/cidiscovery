@@ -3,14 +3,15 @@
         <h2>HPE OneView Remote Support Details</h2>
     </div>
     <br>
-    <h3>Remote Support Configuration Status Details</h3>
+    <div class="heading">
+        <h3>Remote Support Configuration Status Details</h3>
+    </div>
     <table>
         <tr>
             <th>Type</th>
             <th>Category</th>
             <th>Company Name</th>
             <th>Marketing Opt In</th>
-            <th>Serial Number</th>
             <th>Remote Support Enabled</th>
             <th>Email Notification</th>
             <th>Global Custom Delivery</th>
@@ -23,6 +24,22 @@
             <td>{{ rs_data['enableRemoteSupport'] }}</td>
             <td>{{ rs_data['enableEmailNotification'] }}</td>
             <td>{{ rs_data['globalCustomDeliveryId'] }}</td>
+        </tr>
+    </table>
+    <br>
+    <div class="heading">
+        <h3>Remote Support Registration Information</h3>
+    </div>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Connected To HPE</th>
+            <th>Appliance Registered</th>
+        </tr>
+        <tr>
+            <td>{{ registration_data['category'] }}</td>
+            <td>{{ registration_data['connected'] }}</td>
+            <td>{{ registration_data['registered'] }}</td>
         </tr>
     </table>
 <br>

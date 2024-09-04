@@ -234,7 +234,8 @@ def hpersdetails():
         "Auth": f"{ov_session_id}",
         "Content-Type": "application/json"
     }
-    # POST request to the OneView API
+
+    ## Remote Support Configuration Information
     try:
         response = requests.get(url, headers=headers, verify=False)
         response.raise_for_status()
@@ -243,7 +244,18 @@ def hpersdetails():
 
     rs_data = json.loads(response.text)
     print(rs_data)
-    return render_template('hpersdetails.html',rs_data=rs_data)
+
+    ## Appliance's Remote Support Registration Information
+    url = f"https://{ov_fqdn_ip}/rest/support/registration"
+    try:
+        response = requests.get(url, headers=headers, verify=False)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        return jsonify({"error": str(err)}), response.status_code
+
+    registration_data = json.loads(response.text)
+
+    return render_template('hpersdetails.html',rs_data=rs_data, registration_data=registration_data)
 
 if __name__ == '__main__':
     # app.run(debug=True, host='0.0.0.0')

@@ -69,6 +69,7 @@ a {
 .heading {
   display: flex;
   text-align: center;
+  margin-left: 10px;
 }
 
 .container {
